@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>AI-Health Guard Dashboard</h1>
+    <p>Your Personalized Health Advisor. Predicts diseases, offers tailored medical advice, workouts, and diet plans for holistic well-being.</p>
+    <h2>Data Analysis Insight:</h2>
+    <p>Insights from data analysis shed light on trends, patterns, and relations between symptoms and health conditions.</p>
+    
+
+    <h3>Data</h3>
+    <div>{{ data_html|safe }}</div>
+
+    <h3>Frequency of Each Disease</h3>
+    <div>{{ graph1|safe }}</div>
+    <div>
+        <p>Frequency of Each Disease plots represent approx all disease has same count frequency.</p>
+    </div>
+
+    <h3>Word Cloud of Symptoms</h3>
+    <div><img src="data:image/png;base64,{{ wordcloud_img }}" /></div>
+    <div>
+        <p>A word shown in <strong>big size</strong> indicates that it is used more times.</p>
+    </div>
+
+    <h3>Most Prevalent Symptoms in the Dataset</h3>
+    <div>{{ graph2|safe }}</div>
+    <div>
+        <p>Top Reported Symptoms in the Study are <strong>fatigue</strong>, followed by <strong>vomiting</strong>, <strong>high fever</strong>, <strong>loss of appetite</strong>, and <strong>nausea</strong>, etc.</p>
+    </div>
+
+    <h3>Symptom Distribution per Disease</h3>
+    <form method="POST">
+        <select id="disease-select" name="disease">
+            {% for disease in diseases %}
+                <option value="{{ disease }}" {% if disease == selected_disease %}selected{% endif %}>{{ disease }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Show</button>
+    </form>
+    <div>{{ graph3|safe }}</div>
+    
+
+
+    <h3>Disease-Symptom Network Graph</h3>
+    <div>{{ graph4|safe }}</div>
+    <div>
+        <p>The network graph shows connections between different diseases and symptoms.</p>
+    </div>
+
+
+    <h3>Prevalence of Most Common Symptoms</h3>
+    <div>{{ graph5|safe }}</div>
+    <div>
+        <p>It shows the percentage of people experiencing various symptoms. Fatigue is the most common symptom, affecting 15.8% of people. Other symptoms include high fever, loss of appetite, nausea, headache, abdominal pain, yellowish skin, and vomiting.</p>
+    </div>
+
+
+    <h3>Parallel Categories Diagram</h3>
+    <div>{{ graph6|safe }}</div>
+    <div>
+        <p>It show relationships between multiple categorical variables. In this example, the categories are different diseases and symptoms. Each vertical axis represents a single variable, and each data point is a combination of categories across all variables. Lines connect the data points, showing how different categories co-occur.</p>
+    </div>
+
+
+    <h3>Exploring Multidimensional Symptom Relationships</h3>
+    <div>{{ graph7|safe }}</div>
+    <div>
+        <p>The plot show the distribution of data points across three dimensions, which represent selected symptoms. Each data point represents a patient, and the position of the point along each axis corresponds to the severity or presence of a particular symptom. For example, one axis might represent muscle weakness, another family history, and the third silver-like dusting. By examining the position of the data points in 3D space, you can see how the different symptoms co-occur in the patient population.</p>
+    </div>
+
+
+    <h3>Flows Between Diseases and Symptoms</h3>
+    <div>{{ graph8|safe }}</div>
+    <div>
+        <p>The diagram show the flow of patients between different diseases and related symptoms. The width of the arrows represents the number of patients experiencing a particular symptom or disease.</p>
+    </div>
+
+
+    <h3>Parallel Relationships Between Diseases and Symptoms</h3>
+    <div>{{ graph9|safe }}</div>
+    <div>
+        <p>It show relationships between multiple categorical variables. In this example, the categories are different diseases and symptoms. Each vertical axis represents a single variable, and each data point is a combination of categories across all variables. Lines connect the data points, showing how different categories co-occur.</p>
+    </div>
+
+
+    <h3>Bubble Chart of Disease Symptom Counts</h3>
+    <div>{{ graph10|safe }}</div>
+    <div>
+        <p>The chart shows the number of symptoms associated with various diseases. The size of the bubble corresponds to the number of symptoms.</p>
+    </div>
+
+
+    <h3>Disease-Symptom Network</h3>
+    <div>{{ graph11|safe }}</div>
+    <div>
+        <p>Nodes in the graph represent various diseases and symptoms. Edges connect nodes that are frequently co-occur together. Thicker edges indicate stronger connections.</p>
+    </div>
+
+</div>
+{% endblock %}

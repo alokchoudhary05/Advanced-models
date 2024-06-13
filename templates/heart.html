@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>Heart Disease Prediction</h1>
+    <form action="/heart" method="post">
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="text" id="age" name="age" required>
+        </div>
+        <div class="form-group">
+            <label for="sex">Sex</label>
+            <input type="text" id="sex" name="sex" required>
+        </div>
+        <div class="form-group">
+            <label for="cp">Chest Pain types</label>
+            <input type="text" id="cp" name="cp" required>
+        </div>
+        <div class="form-group">
+            <label for="trestbps">Resting Blood Pressure</label>
+            <input type="text" id="trestbps" name="trestbps" required>
+        </div>
+        <div class="form-group">
+            <label for="chol">Serum Cholesterol in mg/dl</label>
+            <input type="text" id="chol" name="chol" required>
+        </div>
+        <div class="form-group">
+            <label for="fbs">Fasting Blood Sugar > 120 mg/dl</label>
+            <input type="text" id="fbs" name="fbs" required>
+        </div>
+        <div class="form-group">
+            <label for="restecg">Resting Electrocardiographic results</label>
+            <input type="text" id="restecg" name="restecg" required>
+        </div>
+        <div class="form-group">
+            <label for="thalach">Maximum Heart Rate achieved</label>
+            <input type="text" id="thalach" name="thalach" required>
+        </div>
+        <div class="form-group">
+            <label for="exang">Exercise Induced Angina</label>
+            <input type="text" id="exang" name="exang" required>
+        </div>
+        <div class="form-group">
+            <label for="oldpeak">ST depression induced by exercise</label>
+            <input type="text" id="oldpeak" name="oldpeak" required>
+        </div>
+        <div class="form-group">
+            <label for="slope">Slope of the peak exercise ST segment</label>
+            <input type="text" id="slope" name="slope" required>
+        </div>
+        <div class="form-group">
+            <label for="ca">Major vessels colored by fluoroscopy</label>
+            <input type="text" id="ca" name="ca" required>
+        </div>
+        <div class="form-group">
+            <label for="thal">Thalassemia(0 = normal; 1 = fixed defect; 2 = reversible defect)</label>
+            <input type="text" id="thal" name="thal" required>
+        </div>
+        <button type="submit" class="button button-primary">Predict Heart Disease</button>
+    </form>
+    {% if prediction_text %}
+    <div class="result">
+        <p>{{ prediction_text }}</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
