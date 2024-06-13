@@ -7,6 +7,7 @@
 
 ## Cloning the Repository
 To get a copy of the project up and running on your local machine, first, clone the repository:
+
 `git clone https://github.com/your-username/ai-health-guard.git `
 
 
@@ -20,5 +21,6 @@ To start the AI Health Guard system, follow these steps:
 
 * Ensure all dependencies are installed.
 * Run the main application:
+  
 ` python app.py`
 
