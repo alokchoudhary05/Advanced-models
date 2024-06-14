@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import pickle
+import joblib
 import warnings
 from dashboard import dashboard_bp
 
@@ -10,7 +11,7 @@ app.register_blueprint(dashboard_bp, url_prefix='/dashboard')
 
 
 # Load models
-pregnancy_model = pickle.load(open("models/Pregnancy.sav", 'rb'))
+pregnancy_model = joblib.load(open("models/pregnancy_model.pkl", "rb"))
 heart_model = pickle.load(open("models/Heart.sav", 'rb'))
 diabetic_model = pickle.load(open("models/Diabetes.sav", 'rb'))
 
@@ -45,14 +46,27 @@ def pregnancy():
     
     return render_template('pregnancy.html', risk_level=risk_level, color=color)
 
+
+
+
 @app.route('/heart', methods=['GET', 'POST'])
 def heart():
     prediction_text = None
     if request.method == 'POST':
+        # Convert 'sex' and 'cp' inputs to the required integer values
+        sex = 0 if request.form['sex'] == 'Male' else 1
+        cp_dict = {
+            'Low pain': 0,
+            'Mild pain': 1,
+            'Moderate pain': 2,
+            'Extreme pain': 3
+        }
+        cp = cp_dict[request.form['cp']]
+
         data = [
             request.form['age'],
-            request.form['sex'],
-            request.form['cp'],
+            sex,
+            cp,
             request.form['trestbps'],
             request.form['chol'],
             request.form['fbs'],
@@ -76,6 +90,10 @@ def heart():
             prediction_text = 'The person does not have any heart disease'
     
     return render_template('heart.html', prediction_text=prediction_text)
+
+
+
+
 
 @app.route('/diabetes', methods=['GET', 'POST'])
 def diabetes():
@@ -103,6 +121,10 @@ def diabetes():
             prediction_text = 'The person is not diabetic'
     
     return render_template('diabetes.html', prediction_text=prediction_text)
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -18,10 +18,6 @@ def dashboard():
     # Load the dataset
     df = pd.read_csv('Dataset/Original_Dataset.csv')
     df = shuffle(df, random_state=42)
-
-
-    # Convert DataFrame to HTML for rendering
-    data_html = df.head().to_html(classes='table table-striped', index=False)
     
     # Frequency of each disease
     disease_counts = df['Disease'].value_counts()
@@ -210,7 +206,7 @@ def dashboard():
 
 
 
-    return render_template('dashboard.html', data_html=data_html, graph1=graph1, wordcloud_img=wordcloud_img, graph2=graph2, 
+    return render_template('dashboard.html', graph1=graph1, wordcloud_img=wordcloud_img, graph2=graph2, 
                            symptom_counts_per_disease=symptom_counts_per_disease, diseases=diseases, graph3=graph3, selected_disease=selected_disease, graph4=graph4,
                            graph5=graph5, graph6=graph6, graph7=graph7, graph8=graph8, graph9=graph9, graph10=graph10, graph11=graph11)
 
