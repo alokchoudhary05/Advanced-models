@@ -63,6 +63,14 @@ def heart():
         }
         cp = cp_dict[request.form['cp']]
 
+        thal_dict = {
+            'Normal (No Thalassemia)': 0,
+            'Fixed Defect (Beta-thalassemia minor)': 1,
+            'Reversible Defect (Beta-thalassemia intermedia)': 2,
+            'Serious Defect (Beta-thalassemia major)':3
+        }
+        thal = thal_dict[request.form['thal']]
+
         data = [
             request.form['age'],
             sex,
@@ -76,7 +84,7 @@ def heart():
             request.form['oldpeak'],
             request.form['slope'],
             request.form['ca'],
-            request.form['thal']
+            thal
         ]
 
         input_data = [data]

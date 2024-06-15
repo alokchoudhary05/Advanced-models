@@ -71,10 +71,18 @@
             <label for="ca">Major vessels colored by fluoroscopy</label>
             <input type="text" id="ca" name="ca" required>
         </div>
+        
         <div class="form-group">
-            <label for="thal">Thalassemia(0 = normal; 1 = fixed defect; 2 = reversible defect)</label>
-            <input type="text" id="thal" name="thal" required>
+            <label for="thal">Thalassemia</label>
+            <select id="thal" name="thal" required>
+                <option value="Select">Select</option>
+                <option value="Normal (No Thalassemia)">Normal (No Thalassemia)</option>
+                <option value="Fixed Defect (Beta-thalassemia minor)">Fixed Defect (Beta-thalassemia minor)</option>
+                <option value="Reversible Defect (Beta-thalassemia intermedia)">Reversible Defect (Beta-thalassemia intermedia)</option>
+                <option value="Serious Defect (Beta-thalassemia major)">Serious Defect (Beta-thalassemia major)</option>
+            </select>
         </div>
+
         <button type="submit" class="button button-primary">Predict Heart Disease</button>
     </form>
     {% if prediction_text %}
